@@ -15,6 +15,7 @@ export default class Square extends React.Component {
       "#f9ca24",
       "#FEA47F"
     ];
+    this.renderProton = this.renderProton.bind(this);
   }
 
   componentWillUnmount() {
@@ -25,7 +26,7 @@ export default class Square extends React.Component {
   }
 
   onCanvasDidMount(canvas) {
-    canvas.style.backgroundColor = "#2C3A47";
+    
   }
 
   onCanvasInited(canvas, width, height) {
@@ -124,7 +125,7 @@ export default class Square extends React.Component {
 
   render() {
     return (
-      <Canvas
+      <Canvas bg={this.props.bg}
         globalCompositeOperation="lighter"
         onCanvasDidMount={this.onCanvasDidMount.bind(this)}
         onCanvasInited={this.onCanvasInited.bind(this)}

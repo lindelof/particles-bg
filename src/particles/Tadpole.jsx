@@ -6,10 +6,11 @@ import Canvas from "./Canvas.jsx";
 export default class Tadpole extends React.Component {
   constructor(props) {
     super(props);
+    this.renderProton = this.renderProton.bind(this);
   }
 
   onCanvasDidMount(canvas) {
-    canvas.style.backgroundColor = "#192a56";
+
   }
 
   onCanvasInited(canvas, width, height) {
@@ -52,7 +53,7 @@ export default class Tadpole extends React.Component {
       new Proton.RectZone(0, 0, canvas.width, canvas.height),
       "bound"
     );
-    emitter.addBehaviour(new Proton.Color("#bbb"));
+    emitter.addBehaviour(new Proton.Color(this.props.color || "#bbb"));
     //emitter.addBehaviour(new Proton.Alpha(new Proton.Span(0.5, 1)));
     emitter.addBehaviour(attractionBehaviour, crossZoneBehaviour);
     emitter.addBehaviour(new Proton.RandomDrift(15, 15, 0.05));
@@ -69,7 +70,7 @@ export default class Tadpole extends React.Component {
     const context = canvas.getContext("2d");
     const renderer = new Proton.CanvasRenderer(canvas);
 
-    renderer.onProtonUpdate = function() {
+    renderer.onProtonUpdate = function () {
       context.clearRect(0, 0, canvas.width, canvas.height);
     };
 
@@ -78,7 +79,7 @@ export default class Tadpole extends React.Component {
       particle.data.index = 0;
     };
 
-    renderer.onParticleUpdate = function(particle) {
+    renderer.onParticleUpdate = function (particle) {
       drawTadpoleTail(particle);
       if (particle.data.index % delayTime === 0) fillPointsData(particle);
       drawTadpoleHead(particle);
@@ -152,7 +153,7 @@ export default class Tadpole extends React.Component {
 
   render() {
     return (
-      <Canvas
+      <Canvas bg={this.props.bg}
         globalCompositeOperation="darker"
         onCanvasDidMount={this.onCanvasDidMount.bind(this)}
         onCanvasInited={this.onCanvasInited.bind(this)}

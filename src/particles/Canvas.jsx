@@ -1,6 +1,5 @@
 import React from "react";
 import RAFManager from "raf-manager";
-import { Waypoint } from "react-waypoint";
 
 export default class Canvas extends React.Component {
   constructor(props) {
@@ -72,14 +71,25 @@ export default class Canvas extends React.Component {
     RAFManager.stop();
   }
 
+  getStyle() {
+    let style = { width: "100%", height: "100%" };
+    
+    if (this.props.bg) {
+      style = Object.assign(style, {
+        position: "absolute",
+        zIndex: -1,
+        top: 0,
+        left: 0
+      });
+    }
+    return style;
+  }
+
   render() {
     return (
-      <Waypoint
-        onEnter={this.handleWaypointEnter}
-        onLeave={this.handleWaypointLeave}
-      >
-        <canvas ref={this.canvasRef} style={{ width: "100%", height: "100%" }} />
-      </Waypoint>
+      <canvas ref={this.canvasRef}
+          style={this.getStyle()}
+      />
     );
   }
 }

@@ -2,17 +2,19 @@ import React from "react";
 import Proton from "proton-engine";
 import RAFManager from "raf-manager";
 import Canvas from "./Canvas.jsx";
+import { getColor } from "../utils/Color";
 
 export default class Lines extends React.Component {
   constructor(props) {
     super(props);
+    this.renderProton = this.renderProton.bind(this);
   }
 
   componentWillUnmount() {
     try {
       RAFManager.remove(this.renderProton);
       this.proton.destroy();
-    } catch (e) {}
+    } catch (e) { }
   }
 
   onCanvasInited(canvas, width, height) {
@@ -66,12 +68,12 @@ export default class Lines extends React.Component {
   createRenderer(canvas) {
     const context = canvas.getContext("2d");
     const renderer = new Proton.CanvasRenderer(canvas);
-    renderer.onProtonUpdate = function() {
-      context.fillStyle = "rgba(0, 0, 0, 0.02)";
+    renderer.onProtonUpdate = () => {
+      context.fillStyle = getColor(this.props.color, 0.02) || "rgba(0, 0, 0, 0.02)";
       context.fillRect(0, 0, canvas.width, canvas.height);
     };
 
-    renderer.onParticleUpdate = function(particle) {
+    renderer.onParticleUpdate = function (particle) {
       context.beginPath();
       context.strokeStyle = particle.color;
       context.lineWidth = 1;
@@ -90,7 +92,7 @@ export default class Lines extends React.Component {
 
   render() {
     return (
-      <Canvas
+      <Canvas bg={this.props.bg}
         globalCompositeOperation="darker"
         onCanvasInited={this.onCanvasInited.bind(this)}
         onResize={this.onResize.bind(this)}

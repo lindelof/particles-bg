@@ -14,9 +14,10 @@ const COLOR = [
   "#ff3838"
 ];
 
-export default class Flower extends React.Component {
+export default class Polygon extends React.Component {
   constructor(props) {
     super(props);
+    this.renderProton = this.renderProton.bind(this);
   }
 
   onCanvasInited(canvas, width, height) {
@@ -209,7 +210,7 @@ export default class Flower extends React.Component {
 
   render() {
     return (
-      <Canvas
+      <Canvas bg={this.props.bg}
         globalCompositeOperation="darker"
         onCanvasInited={this.onCanvasInited.bind(this)}
         onResize={this.onResize.bind(this)}

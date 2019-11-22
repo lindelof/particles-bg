@@ -2,10 +2,12 @@ import React from "react";
 import Proton from "proton-engine";
 import RAFManager from "raf-manager";
 import Canvas from "./Canvas.jsx";
+import { getColor } from "../utils/Color";
 
 export default class Cobweb extends React.Component {
   constructor(props) {
     super(props);
+    this.renderProton = this.renderProton.bind(this);
   }
 
   onCanvasInited(canvas, width, height) {
@@ -52,7 +54,7 @@ export default class Cobweb extends React.Component {
     );
 
     emitter.addBehaviour(new Proton.Alpha(Proton.getSpan(0.2, 0.9)));
-    emitter.addBehaviour(new Proton.Color("#ffffff"));
+    emitter.addBehaviour(new Proton.Color(this.props.color || "#333"));
     this.crossZoneBehaviour = new Proton.CrossZone(
       new Proton.RectZone(0, 0, width, height),
       "cross"
@@ -70,7 +72,7 @@ export default class Cobweb extends React.Component {
     const renderer = new Proton.CanvasRenderer(canvas);
     const R = 140;
 
-    renderer.onProtonUpdateAfter = function() {
+    renderer.onProtonUpdateAfter = ()=> {
       let particles = emitter.particles;
 
       for (let i = 0; i < particles.length; i++) {
@@ -81,7 +83,7 @@ export default class Cobweb extends React.Component {
 
           if (dis < R) {
             let alpha = (1 - dis / R) * 0.5;
-            context.strokeStyle = "rgba(255,255,255," + alpha + ")";
+            context.strokeStyle = getColor(this.props.color, alpha) || `rgba(3, 3, 3, ${alpha})`;
             context.beginPath();
             context.moveTo(pA.p.x, pA.p.y);
             context.lineTo(pB.p.x, pB.p.y);
@@ -101,7 +103,7 @@ export default class Cobweb extends React.Component {
 
   render() {
     return (
-      <Canvas
+      <Canvas bg={this.props.bg}
         globalCompositeOperation="darker"
         onCanvasInited={this.onCanvasInited.bind(this)}
         onResize={this.onResize.bind(this)}

@@ -2,6 +2,7 @@ import React from "react";
 import Proton from "proton-engine";
 import RAFManager from "raf-manager";
 import Canvas from "./Canvas.jsx";
+import { getColor } from "../utils/Color";
 
 export default class Thick extends React.Component {
   constructor(props) {
@@ -9,9 +10,11 @@ export default class Thick extends React.Component {
     this.hue = 0;
     this.index = 0;
     this.colorTemplate = `hsla(hue,80%,50%, 0.75)`;
+    this.renderProton = this.renderProton.bind(this);
   }
 
   onCanvasInited(canvas, width, height) {
+    this.canvas = canvas;
     this.createProton(canvas, width, height);
     RAFManager.add(this.renderProton);
   }
@@ -80,7 +83,7 @@ export default class Thick extends React.Component {
 
     renderer.onProtonUpdate = () => {
       this.hue += 1;
-      context.fillStyle = "rgba(0, 0, 0, 0.02)";
+      context.fillStyle = getColor(this.props.color, 0.02) || "rgba(0, 0, 0, 0.02)";
       context.fillRect(0, 0, canvas.width, canvas.height);
     };
 
@@ -115,7 +118,8 @@ export default class Thick extends React.Component {
     } catch (e) {}
   }
 
-  renderProton(canvas) {
+  renderProton() {
+    const canvas = this.canvas;
     this.proton.update();
     if (this.index % 200 === 0) {
       this.attraction.targetPosition.x = Math.random() * canvas.width;
@@ -130,7 +134,7 @@ export default class Thick extends React.Component {
 
   render() {
     return (
-      <Canvas
+      <Canvas bg={this.props.bg}
         onCanvasInited={this.onCanvasInited.bind(this)}
         onResize={this.onResize.bind(this)}
       />

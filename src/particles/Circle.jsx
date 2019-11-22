@@ -16,13 +16,15 @@ export default class Circle extends React.Component {
       "#006266",
       "#1B1464"
     ];
+
+    this.renderProton = this.renderProton.bind(this);
   }
 
   componentWillUnmount() {
     try {
       RAFManager.remove(this.renderProton);
       this.proton.destroy();
-    } catch (e) {}
+    } catch (e) { }
   }
 
   onCanvasInited(canvas, width, height) {
@@ -64,7 +66,7 @@ export default class Circle extends React.Component {
     );
     emitter.addBehaviour(crossZoneBehaviour);
     emitter.addBehaviour(new Proton.Alpha(Proton.getSpan(0.35, 0.55)));
-    emitter.addBehaviour(new Proton.Color(this.colors, "random"));
+    emitter.addBehaviour(new Proton.Color(this.getColor()));
     emitter.addBehaviour(new Proton.RandomDrift(50, 50, 0.5));
 
     emitter.emit("once");
@@ -76,13 +78,26 @@ export default class Circle extends React.Component {
     this.crossZoneBehaviour = crossZoneBehaviour;
   }
 
+  getColor() {
+    let c = this.colors;
+    if (this.props.color) {
+      if(Array.isArray(this.props.color)){
+        c = this.props.color;
+      }else{
+        c = [this.props.color];
+      }
+    }
+
+    return c;
+  }
+
   renderProton() {
     this.proton && this.proton.update();
   }
 
   render() {
     return (
-      <Canvas
+      <Canvas bg={this.props.bg}
         globalCompositeOperation="darken"
         onCanvasInited={this.onCanvasInited.bind(this)}
         onResize={this.onResize.bind(this)}

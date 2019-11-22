@@ -16,6 +16,7 @@ export default class Color extends React.Component {
       "#FF4E50",
       "#F9D423"
     ];
+    this.renderProton = this.renderProton.bind(this);
   }
 
   componentWillUnmount() {
@@ -64,7 +65,7 @@ export default class Color extends React.Component {
 
   render() {
     return (
-      <Canvas
+      <Canvas bg={this.props.bg}
         globalCompositeOperation="darker"
         onCanvasInited={this.onCanvasInited.bind(this)}
         onResize={this.onResize.bind(this)}

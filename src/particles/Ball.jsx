@@ -2,10 +2,12 @@ import React from "react";
 import Proton from "proton-engine";
 import RAFManager from "raf-manager";
 import Canvas from "./Canvas.jsx";
+import { getColor } from "../utils/Color";
 
 export default class Ball extends React.Component {
   constructor(props) {
     super(props);
+    this.renderProton = this.renderProton.bind(this);
   }
 
   onCanvasInited(canvas, width, height) {
@@ -18,10 +20,10 @@ export default class Ball extends React.Component {
     try {
       RAFManager.remove(this.renderProton);
       this.proton.destroy();
-    } catch (e) {}
+    } catch (e) { }
   }
 
-  onResize() {}
+  onResize() { }
 
   createProton(canvas, width, height) {
     const context = canvas.getContext("2d");
@@ -65,8 +67,8 @@ export default class Ball extends React.Component {
     this.proton.addEmitter(emitter);
 
     const renderer = new Proton.CanvasRenderer(canvas);
-    renderer.onProtonUpdate = function() {
-      context.fillStyle = "rgba(0, 122, 197, 0.2)";
+    renderer.onProtonUpdate =  ()=> {
+      context.fillStyle = getColor(this.props.color, 0.2) || "rgba(255, 255, 255, 0.2)";
       context.fillRect(0, 0, canvas.width, canvas.height);
     };
     this.proton.addRenderer(renderer);
@@ -74,7 +76,7 @@ export default class Ball extends React.Component {
 
   customDeadBehaviour(canvas) {
     return {
-      initialize: function(particle) {},
+      initialize: function (particle) { },
       applyBehaviour: particle => {
         if (particle.p.y + particle.radius >= canvas.height) {
           if (particle.radius > 9) {
@@ -139,7 +141,7 @@ export default class Ball extends React.Component {
 
   render() {
     return (
-      <Canvas
+      <Canvas bg={this.props.bg}
         globalCompositeOperation="darker"
         onCanvasInited={this.onCanvasInited.bind(this)}
         onResize={this.onResize.bind(this)}

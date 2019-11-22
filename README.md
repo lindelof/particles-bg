@@ -84,7 +84,7 @@ top: 0,
 left: 0
 ```
 
-### About Custom
+## About Custom
 
 ![](https://github.com/lindelof/particles-bg/blob/master/image/08.jpg?raw=true)
 

@@ -1,6 +1,6 @@
 {
   "name": "particles-bg",
-  "version": "2.3.3",
+  "version": "2.3.5",
   "description": "a particles background for react",
   "main": "./src/index.js",
   "scripts": {

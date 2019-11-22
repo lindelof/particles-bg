@@ -1,10 +1,14 @@
 # particles-bg
 
+[![NPM](https://img.shields.io/npm/v/particles-bg.svg)](https://www.npmjs.com/package/particles-bg) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 > React component for particles backgrounds
 
 This project refers to the source code of the [proton](https://a-jie.github.io/Proton/) official website, I packaged it into a component. You can use it casually in your own projects
 
-[![NPM](https://img.shields.io/npm/v/particles-bg.svg)](https://www.npmjs.com/package/particles-bg) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+### Online demo
+* demo1 [https://stackblitz.com/edit/react-a6pm3w](https://stackblitz.com/edit/react-a6pm3w?file=index.js)
+* demo2 [https://stackblitz.com/edit/react-bpv9fc](https://stackblitz.com/edit/react-bpv9fc?file=index.js)
 
 ![](https://github.com/lindelof/particles-bg/blob/master/image/01.jpg?raw=true)
 

@@ -52,7 +52,8 @@ class Example extends Component {
 <ParticlesBg color="#ff0000" num={200} type="circle" bg={true} />
 ```
 #### * type - Is the type of particle animation
-Is the type of particle animation, Random is a random selection
+Is the type of particle animation, `random` is a random selection. You are also free to customize use `custom`.
+
 ```js
 "color"
 "ball"
@@ -65,6 +66,7 @@ Is the type of particle animation, Random is a random selection
 "tadpole"
 "fountain"
 "random"
+"custom"
 ```
 
 #### * num - The number of particles emitted each time, generally not set
@@ -79,6 +81,40 @@ position: "absolute",
 zIndex: -1,
 top: 0,
 left: 0
+```
+
+### About Custom
+You can use type="custom" to achieve a higher degree of freedom for the particle background.
+
+```jsx
+  let config = {
+      num: [4, 7],
+      rps: 0.1,
+      radius: [5, 40],
+      life: [1.5, 3],
+      v: [2, 3],
+      tha: [-40, 40],
+      alpha: [0.6, 0],
+      scale: [1, 0.1],
+      position: "center", // all or {x:1,y:1,width:100,height:100}
+      color: ["random", "#ff0000"],
+      cross: "dead", // cross or bround
+      random: 15,  // or null
+      onParticleUpdate: (ctx, particle) => {
+          ctx.beginPath();
+          ctx.rect(particle.p.x, particle.p.y, particle.radius * 2, particle.radius * 2);
+          ctx.fillStyle = particle.color;
+          ctx.fill();
+          ctx.closePath();
+      }
+    };
+
+    return (
+      <div>
+        <SignIn />
+        <ParticlesBg type="custom" config={config} bg={true} />
+      </div>
+    )
 ```
 
 ## License

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Rand from "./utils/Rand.js";
 import Ball from "./particles/Ball.jsx";
 import Color from "./particles/Color.jsx";
+import Custom from "./particles/Custom.jsx";
 import Lines from "./particles/Lines.jsx";
 import Thick from "./particles/Thick.jsx";
 import Square from "./particles/Square.jsx";
@@ -18,7 +19,7 @@ export default class ParticlesBg extends Component {
   }
 
   getRandom() {
-    const { num, bg,color } = this.props;
+    const { num, bg, color } = this.props;
 
     if (!this.rand) {
       this.rand = new Rand();
@@ -37,7 +38,7 @@ export default class ParticlesBg extends Component {
   }
 
   getBgParticles() {
-    const { type, num, bg, color } = this.props;
+    const { type, num, bg, color, config } = this.props;
 
     let particles;
     switch (String(type).toLowerCase()) {
@@ -70,6 +71,9 @@ export default class ParticlesBg extends Component {
         break;
       case "fountain":
         particles = <Fountain num={num} bg={bg} color={color} />;
+        break;
+      case "custom":
+        particles = <Custom bg={bg} config={config} />;
         break;
       case "random":
         particles = this.getRandom(num);

@@ -73,7 +73,7 @@ export default class Canvas extends React.Component {
 
   getStyle() {
     let style = { width: "100%", height: "100%" };
-    
+
     if (this.props.bg) {
       style = Object.assign(style, {
         position: "absolute",
@@ -85,10 +85,16 @@ export default class Canvas extends React.Component {
     return style;
   }
 
+  handleMouseDown(e) {
+    this.props.onMouseDown && this.props.onMouseDown(e);
+  }
+  
   render() {
     return (
-      <canvas ref={this.canvasRef}
-          style={this.getStyle()}
+      <canvas
+        ref={this.canvasRef}
+        onMouseDown={this.handleMouseDown.bind(this)}
+        style={this.getStyle()}
       />
     );
   }

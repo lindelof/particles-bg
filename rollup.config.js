@@ -1,7 +1,6 @@
 // Rollup plugins
 import babel from "rollup-plugin-babel";
 import uglify from "rollup-plugin-uglify";
-import license from "rollup-plugin-license";
 import pkjson from "./package.json";
 
 const isDev = process.argv.splice(2).indexOf("--pub") < 0;

@@ -84,6 +84,9 @@ left: 0
 ```
 
 ### About Custom
+
+![](https://github.com/lindelof/particles-bg/blob/master/image/08.jpg?raw=true)
+
 You can use type="custom" to achieve a higher degree of freedom for the particle background.
 
 ```jsx

@@ -1,9 +1,7 @@
 {
   "presets": [
-    ["env", {
-      "modules": false
-    }],
-    "stage-0",
-    "react"
+      "es2015-rollup",
+      "stage-0",
+      "react"
   ]
 }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Rand from "../utils/Rand.js";
+import Rand from "./utils/Rand.js";
 import Ball from "./particles/Ball.jsx";
 import Color from "./particles/Color.jsx";
 import Lines from "./particles/Lines.jsx";
@@ -11,8 +11,6 @@ import Circle from "./particles/Circle.jsx";
 import Tadpole from "./particles/Tadpole.jsx";
 import Polygon from "./particles/Polygon.jsx";
 import Fountain from "./particles/Fountain.jsx";
-
-import styles from "./styles.css";
 
 export default class ParticlesBg extends Component {
   static propTypes = {

@@ -1,7 +1,6 @@
 import React from "react";
 import RAFManager from "raf-manager";
 import { Waypoint } from "react-waypoint";
-import "./canvas.css";
 
 export default class Canvas extends React.Component {
   constructor(props) {
@@ -79,7 +78,7 @@ export default class Canvas extends React.Component {
         onEnter={this.handleWaypointEnter}
         onLeave={this.handleWaypointLeave}
       >
-        <canvas ref={this.canvasRef} className="canvas" />
+        <canvas ref={this.canvasRef} style={{ width: "100%", height: "100%" }} />
       </Waypoint>
     );
   }

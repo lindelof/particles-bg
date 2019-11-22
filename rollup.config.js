@@ -1,39 +1,34 @@
-import babel from 'rollup-plugin-babel'
-import commonjs from 'rollup-plugin-commonjs'
-import external from 'rollup-plugin-peer-deps-external'
-import postcss from 'rollup-plugin-postcss'
-import resolve from 'rollup-plugin-node-resolve'
-import url from 'rollup-plugin-url'
-import svgr from '@svgr/rollup'
+// Rollup plugins
+import babel from "rollup-plugin-babel";
+import uglify from "rollup-plugin-uglify";
+import license from "rollup-plugin-license";
+import pkjson from "./package.json";
 
-import pkg from './package.json'
+const isDev = process.argv.splice(2).indexOf("--pub") < 0;
+const plugins = isDev
+  ? [
+      babel({
+        exclude: "node_modules/**"
+      })
+    ]
+  : [
+      babel({
+        exclude: "node_modules/**"
+      }),
+      uglify()
+    ];
+
+const output = isDev
+  ? { file: "build/particles-bg.js" }
+  : { file: "build/particles-bg.min.js" };
 
 export default {
-  input: 'src/index.js',
-  output: [
-    {
-      file: pkg.main,
-      format: 'cjs',
-      sourcemap: true
-    },
-    {
-      file: pkg.module,
-      format: 'es',
-      sourcemap: true
-    }
-  ],
-  plugins: [
-    external(),
-    postcss({
-      modules: true
-    }),
-    url(),
-    svgr(),
-    babel({
-      exclude: 'node_modules/**',
-      plugins: [ 'external-helpers' ]
-    }),
-    resolve(),
-    commonjs()
-  ]
-}
+  input: "src/index.js",
+  output: {
+    ...output,
+    format: "umd",
+    name: "particles-bg",
+    sourcemap: true
+  },
+  plugins: plugins
+};

@@ -47,7 +47,7 @@ class Example extends Component {
 ```jsx
 <ParticlesBg color="#ff0000" num={200} type="circle" bg={true} />
 ```
-#### type - Is the type of particle animation
+#### * type - Is the type of particle animation
 Is the type of particle animation, Random is a random selection
 ```js
 "color"
@@ -63,12 +63,12 @@ Is the type of particle animation, Random is a random selection
 "random"
 ```
 
-#### num - The number of particles emitted each time, generally not set
+#### * num - The number of particles emitted each time, generally not set
 
-#### color - The background color or particle color of the particle scene
+#### * color - The background color or particle color of the particle scene
 Notice: which should be an array under type=`color`
 
-#### bg - Set to html background
+#### * bg - Set to html background
 Is set the following properties
 ```css
 position: "absolute",

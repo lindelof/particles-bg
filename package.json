@@ -1,6 +1,6 @@
 {
   "name": "particles-bg",
-  "version": "2.3.7",
+  "version": "2.3.9",
   "description": "a particles background for react",
   "author": "lindelof",
   "license": "MIT",
@@ -18,11 +18,6 @@
     "build": "rollup -c",
     "start": "rollup -c -w",
     "prepare": "npm run build"
-  },
-  "peerDependencies": {
-    "prop-types": "^15.5.4",
-    "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
     "@svgr/rollup": "^2.4.1",

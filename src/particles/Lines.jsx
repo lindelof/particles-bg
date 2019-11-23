@@ -10,6 +10,12 @@ export default class Lines extends React.Component {
     this.renderProton = this.renderProton.bind(this);
   }
 
+  onCanvasDidMount(canvas){
+    if(this.props.color){
+      canvas.style.backgroundColor = this.props.color;
+    }
+  }
+
   componentWillUnmount() {
     try {
       RAFManager.remove(this.renderProton);
@@ -94,6 +100,7 @@ export default class Lines extends React.Component {
     return (
       <Canvas bg={this.props.bg}
         globalCompositeOperation="darker"
+        onCanvasDidMount={this.onCanvasDidMount.bind(this)}
         onCanvasInited={this.onCanvasInited.bind(this)}
         onResize={this.onResize.bind(this)}
       />

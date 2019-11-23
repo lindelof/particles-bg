@@ -13,6 +13,12 @@ export default class Thick extends React.Component {
     this.renderProton = this.renderProton.bind(this);
   }
 
+  onCanvasDidMount(canvas){
+    if(this.props.color){
+      canvas.style.backgroundColor = this.props.color;
+    }
+  }
+
   onCanvasInited(canvas, width, height) {
     this.canvas = canvas;
     this.createProton(canvas, width, height);
@@ -135,6 +141,7 @@ export default class Thick extends React.Component {
   render() {
     return (
       <Canvas bg={this.props.bg}
+        onCanvasDidMount={this.onCanvasDidMount.bind(this)}
         onCanvasInited={this.onCanvasInited.bind(this)}
         onResize={this.onResize.bind(this)}
       />

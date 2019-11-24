@@ -103,7 +103,9 @@ You can use type="custom" to achieve a higher degree of freedom for the particle
       position: "center", // all or {x:1,y:1,width:100,height:100}
       color: ["random", "#ff0000"],
       cross: "dead", // cross or bround
-      random: 15,  // or null
+      random: 15,  // or null,
+      g: 2,    // gravity
+      f: [2, -1] // force
       onParticleUpdate: (ctx, particle) => {
           ctx.beginPath();
           ctx.rect(particle.p.x, particle.p.y, particle.radius * 2, particle.radius * 2);

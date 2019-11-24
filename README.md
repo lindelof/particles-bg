@@ -105,7 +105,7 @@ You can use type="custom" to achieve a higher degree of freedom for the particle
       cross: "dead", // cross or bround
       random: 15,  // or null,
       g: 2,    // gravity
-      f: [2, -1] // force
+      f: [2, -1], // force
       onParticleUpdate: (ctx, particle) => {
           ctx.beginPath();
           ctx.rect(particle.p.x, particle.p.y, particle.radius * 2, particle.radius * 2);

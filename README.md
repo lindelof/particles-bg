@@ -100,6 +100,7 @@ You can use type="custom" to achieve a higher degree of freedom for the particle
       v: [2, 3],
       tha: [-40, 40],
       // body: "./img/icon.png", // Whether to render pictures
+      // rotate: [0, 20],
       alpha: [0.6, 0],
       scale: [1, 0.1],
       position: "center", // all or center or {x:1,y:1,width:100,height:100}

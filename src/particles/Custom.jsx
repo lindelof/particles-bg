@@ -74,6 +74,7 @@ export default class Color extends React.Component {
         const color = this.getArrProp("color");
         const cross = this.getProp("cross", "dead");
         const random = this.getProp("random");
+        const rotate = this.getArrProp("rotate");
         const g = this.getProp("g");
         const f = this.getArrProp("f");
         const emitterV = this.getProp("emitter");
@@ -92,7 +93,7 @@ export default class Color extends React.Component {
         emitter.addInitialize(new Proton.Life(life));
         emitter.addInitialize(new Proton.Velocity(v, tha, "polar"));
         if (body) emitter.addInitialize(new Proton.Body(body));
-        
+
         let pos;
         if (position === "all" || position === "screen") {
             pos = new Proton.Position(new Proton.RectZone(0, 0, canvas.width, canvas.height))
@@ -113,6 +114,14 @@ export default class Color extends React.Component {
         emitter.addBehaviour(alphaB);
         emitter.addBehaviour(scaleB);
         if(!body) emitter.addBehaviour(colorB);
+
+        if(rotate){
+            if(rotate[0]===true||rotate[0]==="rotate"){
+                emitter.addBehaviour(new Proton.Rotate());
+            }else{
+                emitter.addBehaviour(new Proton.Rotate(rotate[0], rotate[1]));
+            }
+        }
 
         const zone = new Proton.RectZone(0, 0, canvas.width, canvas.height)
         const crossZoneBehaviour = new Proton.CrossZone(zone, cross);

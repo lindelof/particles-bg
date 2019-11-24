@@ -540,6 +540,7 @@ var Color$1 = function (_React$Component) {
             var color = this.getArrProp("color");
             var cross = this.getProp("cross", "dead");
             var random = this.getProp("random");
+            var rotate = this.getArrProp("rotate");
             var g = this.getProp("g");
             var f = this.getArrProp("f");
             var emitterV = this.getProp("emitter");
@@ -579,6 +580,14 @@ var Color$1 = function (_React$Component) {
             emitter.addBehaviour(alphaB);
             emitter.addBehaviour(scaleB);
             if (!body) emitter.addBehaviour(colorB);
+
+            if (rotate) {
+                if (rotate[0] === true || rotate[0] === "rotate") {
+                    emitter.addBehaviour(new Proton.Rotate());
+                } else {
+                    emitter.addBehaviour(new Proton.Rotate(rotate[0], rotate[1]));
+                }
+            }
 
             var zone = new Proton.RectZone(0, 0, canvas.width, canvas.height);
             var crossZoneBehaviour = new Proton.CrossZone(zone, cross);

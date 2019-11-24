@@ -74,6 +74,8 @@ export default class Color extends React.Component {
         const color = this.getArrProp("color");
         const cross = this.getProp("cross", "dead");
         const random = this.getProp("random");
+        const g = this.getProp("g");
+        const f = this.getArrProp("f");
         const emitterV = this.getProp("emitter");
 
         this.proton = new Proton();
@@ -117,6 +119,8 @@ export default class Color extends React.Component {
         emitter.addBehaviour(crossZoneBehaviour);
 
         random && emitter.addBehaviour(new Proton.RandomDrift(random, random, 0.05));
+        g && emitter.addBehaviour(new Proton.G(g));
+        f && emitter.addBehaviour(new Proton.F(f[0], f[1]));
 
         emitter.emit();
         this.proton.addEmitter(emitter);

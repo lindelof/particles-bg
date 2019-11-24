@@ -535,6 +535,8 @@ var Color$1 = function (_React$Component) {
             var color = this.getArrProp("color");
             var cross = this.getProp("cross", "dead");
             var random = this.getProp("random");
+            var g = this.getProp("g");
+            var f = this.getArrProp("f");
             var emitterV = this.getProp("emitter");
 
             this.proton = new Proton();
@@ -578,6 +580,8 @@ var Color$1 = function (_React$Component) {
             emitter.addBehaviour(crossZoneBehaviour);
 
             random && emitter.addBehaviour(new Proton.RandomDrift(random, random, 0.05));
+            g && emitter.addBehaviour(new Proton.G(g));
+            f && emitter.addBehaviour(new Proton.F(f[0], f[1]));
 
             emitter.emit();
             this.proton.addEmitter(emitter);

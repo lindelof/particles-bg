@@ -91,8 +91,8 @@ export default class Color extends React.Component {
         emitter.addInitialize(new Proton.Radius(radius));
         emitter.addInitialize(new Proton.Life(life));
         emitter.addInitialize(new Proton.Velocity(v, tha, "polar"));
-
         if (body) emitter.addInitialize(new Proton.Body(body));
+        
         let pos;
         if (position === "all" || position === "screen") {
             pos = new Proton.Position(new Proton.RectZone(0, 0, canvas.width, canvas.height))
@@ -112,7 +112,7 @@ export default class Color extends React.Component {
 
         emitter.addBehaviour(alphaB);
         emitter.addBehaviour(scaleB);
-        emitter.addBehaviour(colorB);
+        if(!body) emitter.addBehaviour(colorB);
 
         const zone = new Proton.RectZone(0, 0, canvas.width, canvas.height)
         const crossZoneBehaviour = new Proton.CrossZone(zone, cross);

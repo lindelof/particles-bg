@@ -552,8 +552,8 @@ var Color$1 = function (_React$Component) {
             emitter.addInitialize(new Proton.Radius(radius));
             emitter.addInitialize(new Proton.Life(life));
             emitter.addInitialize(new Proton.Velocity(v, tha, "polar"));
-
             if (body) emitter.addInitialize(new Proton.Body(body));
+
             var pos = void 0;
             if (position === "all" || position === "screen") {
                 pos = new Proton.Position(new Proton.RectZone(0, 0, canvas.width, canvas.height));
@@ -573,7 +573,7 @@ var Color$1 = function (_React$Component) {
 
             emitter.addBehaviour(alphaB);
             emitter.addBehaviour(scaleB);
-            emitter.addBehaviour(colorB);
+            if (!body) emitter.addBehaviour(colorB);
 
             var zone = new Proton.RectZone(0, 0, canvas.width, canvas.height);
             var crossZoneBehaviour = new Proton.CrossZone(zone, cross);

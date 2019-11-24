@@ -104,7 +104,7 @@ You can use type="custom" to achieve a higher degree of freedom for the particle
       color: ["random", "#ff0000"],
       cross: "dead", // cross or bround
       random: 15,  // or null,
-      g: 2,    // gravity
+      g: 5,    // gravity
       f: [2, -1], // force
       onParticleUpdate: (ctx, particle) => {
           ctx.beginPath();

@@ -4,7 +4,7 @@
 
 > React component for particles backgrounds
 
-This project refers to the source code of the [Proton](https://a-jie.github.io/Proton/) official website, I packaged it into a component. You can use it casually in your own projects
+This project refers to the source code of the [Proton](https://github.com/a-jie/Proton) official website, I packaged it into a component. You can use it casually in your own projects
 
 ### Online demo
 * demo1 [https://stackblitz.com/edit/react-a6pm3w](https://stackblitz.com/edit/react-a6pm3w?file=index.js)

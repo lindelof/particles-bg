@@ -21,20 +21,22 @@ export default class ParticlesBg extends Component {
   getRandom() {
     const { num, bg, color } = this.props;
 
-    if (!this.rand) {
-      this.rand = new Rand();
-      this.rand.set(0.25, <Color num={num} bg={bg} color={color} />);
-      this.rand.set(0.2, <Ball num={num} bg={bg} color={color} />);
-      this.rand.set(0.2, <Lines num={num} bg={bg} color={color} />);
-      this.rand.set(0.16, <Thick num={num} bg={bg} color={color} />);
-      this.rand.set(0.18, <Circle num={num} bg={bg} color={color} />);
-      this.rand.set(0.04, <Cobweb num={num} bg={bg} color={color} />);
-      this.rand.set(0.1, <Polygon num={num} bg={bg} color={color} />);
-      this.rand.set(0.08, <Square num={num} bg={bg} color={color} />);
-      this.rand.set(0.18, <Tadpole num={num} bg={bg} color={color} />);
-      this.rand.set(0.15, <Fountain num={num} bg={bg} color={color} />);
+    // Code source from here, thanks author
+    // https://github.com/a-jie/Proton/blob/gh-pages/source/src/utils/Rand.js
+    if (!this.random) {
+      this.random = new Rand();
+      this.random.set(0.25, <Color num={num} bg={bg} color={color} />);
+      this.random.set(0.2, <Ball num={num} bg={bg} color={color} />);
+      this.random.set(0.2, <Lines num={num} bg={bg} color={color} />);
+      this.random.set(0.16, <Thick num={num} bg={bg} color={color} />);
+      this.random.set(0.18, <Circle num={num} bg={bg} color={color} />);
+      this.random.set(0.04, <Cobweb num={num} bg={bg} color={color} />);
+      this.random.set(0.1, <Polygon num={num} bg={bg} color={color} />);
+      this.random.set(0.08, <Square num={num} bg={bg} color={color} />);
+      this.random.set(0.18, <Tadpole num={num} bg={bg} color={color} />);
+      this.random.set(0.15, <Fountain num={num} bg={bg} color={color} />);
     }
-    return this.rand.getResult();
+    return this.random.getResult();
   }
 
   getBgParticles() {

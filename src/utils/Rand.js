@@ -1,3 +1,5 @@
+// Code source from here, thanks author
+// https://github.com/a-jie/Proton/blob/gh-pages/source/src/utils/Rand.js
 class Rand {
 
   constructor() {

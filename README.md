@@ -6,6 +6,8 @@
 
 This project refers to the source code of the [Proton](https://github.com/a-jie/Proton) official website, I packaged it into a component. You can use it casually in your own projects
 
+#### A `vue.js` version of `particles-bg-vue` is here [https://github.com/lindelof/particles-bg-vue](https://github.com/lindelof/particles-bg-vue)
+
 ### Online demo
 * demo1 [https://stackblitz.com/edit/react-a6pm3w](https://stackblitz.com/edit/react-a6pm3w?file=index.js)
 * demo2 [https://stackblitz.com/edit/react-bpv9fc](https://stackblitz.com/edit/react-bpv9fc?file=index.js)

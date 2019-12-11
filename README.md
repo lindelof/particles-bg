@@ -4,7 +4,7 @@
 
 > React component for particles backgrounds
 
-This project refers to the source code of the [Proton](https://github.com/a-jie/Proton) official website, I packaged it into a component. You can use it casually in your own projects
+This project refers to the source code of the [__Proton__](https://github.com/a-jie/Proton) official website, I packaged it into a component. You can use it casually in your own projects
 
 #### A `vue.js` version of `particles-bg-vue` is here [https://github.com/lindelof/particles-bg-vue](https://github.com/lindelof/particles-bg-vue)
 

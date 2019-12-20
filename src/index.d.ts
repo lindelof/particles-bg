@@ -52,7 +52,7 @@ declare module "particles-bg" {
     num?: number;
     bg?: boolean;
     color?: string;
-    config: ConfigProp;
+    config?: ConfigProp;
   }
 
   class ParticlesBg extends React.Component<Props, any> {}

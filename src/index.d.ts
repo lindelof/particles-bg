@@ -45,6 +45,7 @@ declare module "particles-bg" {
   | "tadpole"
   | "fountain"
   | "random"
+  | "list"
   | "custom";
 
   export interface Props {

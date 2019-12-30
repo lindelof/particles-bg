@@ -22,7 +22,7 @@ export default class ParticlesBg extends Component {
     const { num, bg, color } = this.props;
 
     // Code source from here, thanks author
-    // https://github.com/a-jie/Proton/blob/gh-pages/source/src/utils/Rand.js
+    // https://github.com/drawcall/Proton/blob/gh-pages/source/src/utils/Rand.js
     if (!this.random) {
       this.random = new Rand();
       this.random.set(0.25, <Color num={num} bg={bg} color={color} />);

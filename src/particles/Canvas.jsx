@@ -12,7 +12,6 @@ export default class Canvas extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       this.initCanvas();
-      this.resize = this.resize.bind(this);
       window.addEventListener("resize", this.resize);
     }, 100);
 
@@ -33,20 +32,23 @@ export default class Canvas extends React.Component {
   }
 
   heartbeatDetectionCanvasSize(canvas) {
-    setInterval(() => {
-      const newHeight = this.canvasRef.current.clientHeight;
-      if (newHeight !== this.size.height) {
-        const { width, height } = this.setCanvasSize(canvas);
-        this.props.onResize && this.props.onResize(width, height);
+    this.interval = setInterval(() => {
+      if (this.canvasRef.current) {
+        const newHeight = this.canvasRef.current.clientHeight;
+        if (newHeight !== this.size.height) {
+          const { width, height } = this.setCanvasSize(canvas);
+          this.props.onResize && this.props.onResize(width, height);
+        }
       }
     }, 1000 / 10);
   }
 
   componentWillUnmount() {
+    window.clearInterval(this.interval);
     window.removeEventListener("resize", this.resize);
   }
 
-  resize() {
+  resize = () => {
     const canvas = this.canvasRef.current;
     const { width, height } = this.setCanvasSize(canvas);
     this.props.onResize && this.props.onResize(width, height);
@@ -85,15 +87,15 @@ export default class Canvas extends React.Component {
     return style;
   }
 
-  handleMouseDown(e) {
+  handleMouseDown = e => {
     this.props.onMouseDown && this.props.onMouseDown(e);
   }
-  
+
   render() {
     return (
       <canvas
         ref={this.canvasRef}
-        onMouseDown={this.handleMouseDown.bind(this)}
+        onMouseDown={this.handleMouseDown}
         style={this.getStyle()}
       />
     );

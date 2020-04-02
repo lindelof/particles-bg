@@ -5,6 +5,7 @@ export default class Canvas extends React.Component {
   constructor(props) {
     super(props);
 
+    this._id = 0;
     this.size = { width: 0, height: 0 };
     this.canvasRef = React.createRef();
   }
@@ -33,17 +34,24 @@ export default class Canvas extends React.Component {
   }
 
   heartbeatDetectionCanvasSize(canvas) {
-    setInterval(() => {
-      const newHeight = this.canvasRef.current.clientHeight;
-      if (newHeight !== this.size.height) {
-        const { width, height } = this.setCanvasSize(canvas);
-        this.props.onResize && this.props.onResize(width, height);
+    this._id = setInterval(() => {
+      if(this.canvasRef.current){
+        const newHeight = this.canvasRef.current.clientHeight;
+        if (newHeight !== this.size.height) {
+          const { width, height } = this.setCanvasSize(canvas);
+          this.props.onResize && this.props.onResize(width, height);
+        }
       }
     }, 1000 / 10);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.resize);
+    try{
+      window.removeEventListener("resize", this.resize);
+      clearInterval(this._id);
+    }catch(e){
+      
+    }
   }
 
   resize() {
@@ -55,11 +63,11 @@ export default class Canvas extends React.Component {
   setCanvasSize(canvas) {
     const width = this.canvasRef.current.clientWidth;
     const height = this.canvasRef.current.clientHeight;
+
     this.size.width = width;
     this.size.height = height;
     canvas.width = width;
     canvas.height = height;
-
     return { width, height };
   }
 

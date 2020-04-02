@@ -130,6 +130,11 @@ You can use type="custom" to achieve a higher degree of freedom for the particle
     )
 ```
 
+## Similar projects
+Maybe you will like these two projects, they will also make your page flourish
+* [https://github.com/lindelof/react-mouse-particles](https://github.com/lindelof/react-mouse-particles)
+* [https://github.com/lindelof/power-mode-input](https://github.com/lindelof/power-mode-input)
+
 ## License
 
 https://opensource.org/licenses/MIT

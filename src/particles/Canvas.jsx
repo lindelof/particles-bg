@@ -102,7 +102,7 @@ export default class Canvas extends React.Component {
 
   render() {
     return (
-      <canvas
+      <canvas className="particles-bg-canvas-self"
         ref={this.canvasRef}
         onMouseDown={this.handleMouseDown.bind(this)}
         style={this.getStyle()}

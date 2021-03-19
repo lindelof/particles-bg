@@ -103,6 +103,7 @@ bg={{
 }} />
 ```
 
+Of course, you can also set class `particles-bg-canvas-self` to modify the style.
 
 ## About Custom
 

@@ -1,6 +1,5 @@
 import React from "react";
 import RAFManager from "raf-manager";
-
 export default class Canvas extends React.Component {
   constructor(props) {
     super(props);
@@ -50,7 +49,7 @@ export default class Canvas extends React.Component {
       window.removeEventListener("resize", this.resize);
       clearInterval(this._id);
     }catch(e){
-      
+
     }
   }
 
@@ -80,23 +79,27 @@ export default class Canvas extends React.Component {
   }
 
   getStyle() {
+    const { bg } = this.props;
     let style = { width: "100%", height: "100%" };
 
-    if (this.props.bg) {
+    if (bg === true) {
       style = Object.assign(style, {
         position: "absolute",
         zIndex: -1,
         top: 0,
         left: 0
       });
+    } else if(bg && typeof bg === "object") {
+      style = Object.assign(style, bg);
     }
+
     return style;
   }
 
   handleMouseDown(e) {
     this.props.onMouseDown && this.props.onMouseDown(e);
   }
-  
+
   render() {
     return (
       <canvas

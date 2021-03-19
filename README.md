@@ -81,13 +81,28 @@ Is the type of particle animation, `random` is a random selection. You are also 
 Notice: which should be an array under type=`color`
 
 #### * bg - Set to html background
-Is set the following properties
+
+#### If set the bg value to `true`
+```html
+bg={true} />
+```
+
 ```css
 position: "absolute",
 zIndex: -1,
 top: 0,
 left: 0
 ```
+##### If set the bg value to `object`
+
+```html
+bg={{
+  position: "absolute",
+  zIndex: 999,
+  width: 200
+}} />
+```
+
 
 ## About Custom
 

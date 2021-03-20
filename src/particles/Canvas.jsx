@@ -4,24 +4,26 @@ export default class Canvas extends React.Component {
   constructor(props) {
     super(props);
 
-    this._id = 0;
+    this._iid = 0;
+    this._oid = 0;
     this.size = { width: 0, height: 0 };
     this.canvasRef = React.createRef();
   }
 
   componentDidMount() {
-    setTimeout(() => {
+    this._oid = setTimeout(() => {
       this.initCanvas();
       this.resize = this.resize.bind(this);
       window.addEventListener("resize", this.resize);
     }, 100);
 
-    const canvas = this.canvasRef.current;
+    const canvas = this.getCanvas();
     this.props.onCanvasDidMount && this.props.onCanvasDidMount(canvas);
   }
 
   initCanvas() {
-    const canvas = this.canvasRef.current;
+    const canvas = this.getCanvas();
+
     if (this.props.globalCompositeOperation) {
       const context = canvas.getContext("2d");
       context.globalCompositeOperation = this.props.globalCompositeOperation;
@@ -32,8 +34,13 @@ export default class Canvas extends React.Component {
     this.props.onCanvasInited(canvas, width, height);
   }
 
+  getCanvas(){
+    const canvas = this.canvasRef.current;
+    return canvas;
+  }
+
   heartbeatDetectionCanvasSize(canvas) {
-    this._id = setInterval(() => {
+    this._iid = setInterval(() => {
       if(this.canvasRef.current){
         const newHeight = this.canvasRef.current.clientHeight;
         if (newHeight !== this.size.height) {
@@ -47,14 +54,14 @@ export default class Canvas extends React.Component {
   componentWillUnmount() {
     try{
       window.removeEventListener("resize", this.resize);
-      clearInterval(this._id);
+      clearInterval(this._iid);
+      clearTimeout(this._oid);
     }catch(e){
-
     }
   }
 
   resize() {
-    const canvas = this.canvasRef.current;
+    const canvas = this.getCanvas();
     const { width, height } = this.setCanvasSize(canvas);
     this.props.onResize && this.props.onResize(width, height);
   }

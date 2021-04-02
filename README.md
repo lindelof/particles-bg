@@ -105,6 +105,13 @@ bg={{
 
 Of course, you can also set class `particles-bg-canvas-self` to modify the style.
 
+```css
+.particles-bg-canvas-self{
+  background: #000;
+  ...
+}
+```
+
 ## About Custom
 
 ![](https://github.com/lindelof/particles-bg/blob/master/image/08.jpg?raw=true)
